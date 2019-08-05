@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World!</title>
+</head>
+<!-- <body style="background-color: #872Fa0;"> -->
+<body> 
+  <!-- <div style="border-color: red; height: 20; width: 100%; border-width: 10px; border-radius: 5px; -webkit-app-region: drag"> -->
+  <br>  
+  </div>
+    <!-- <div id="title-bar">
+      <div id="title">My Life For The Code</div>
+      <div id="title-bar-btns">
+        <button id="min-btn">-</button>
+        <button id="max-btn">+</button>
+        <button id="close-btn">x</button>
+      </div>
+    </div> -->
+    <!-- <div style="border-radius: 5px; -webkit-app-region: drag">My window content</div> -->
+    <!-- <h1>Hello World!</h1> -->
+    <img width="250" src="http://66.media.tumblr.com/35ce38f7b331accbc5697a0d39201dd1/tumblr_mtaknmIIy21r06rmko1_500.gif" style="-webkit-app-region: drag;"/>
+    <!-- <marquee style="width: 600px">
+      We are using Node.js <span id="node-version"></span>,
+      Chromium <span id="chrome-version"></span>,
+      and Electron <span id="electron-version"></span>.
+    </marquee> -->
+  <!-- </div> -->
+  <!-- You can also require other files to run in this process -->
+  <script  src="./renderer.js"></script>
+  <script>
+    var remote = require('remote');
+    var BrowserWindow = remote.require('browser-window');
+    document.getElementById("min-btn")
+      .addEventListener("click", e => BrowserWindow.getFocusedWindow().minimize())
+    document.getElementById("max-btn")
+      .addEventListener("click", e => BrowserWindow.getFocusedWindow().maximize())
+    document.getElementById("close-btn")
+      .addEventListener("click", e => BrowserWindow.getFocusedWindow().close()) 
+  </script>
+</body>
+</html>
