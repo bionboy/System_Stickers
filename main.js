@@ -1,19 +1,30 @@
-const { app, BrowserWindow, remote } = require("electron");
+const { app, BrowserWindow, remote, ipcMain } = require("electron");
 
-let mainWindow;
+let window;
+
+const imageURL = process.argv[2];
+
+ipcMain.on("loaded", function (event, _) {
+  if (imageURL) event.sender.send("setImgSrc", imageURL);
+});
 
 function createWindow() {
-  mainWindow = new BrowserWindow({
+  window = new BrowserWindow({
     width: 300,
     height: 300,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
   });
 
-  mainWindow.loadFile("index.html");
-  mainWindow.on("closed", function () {
-    mainWindow = null;
+  window.loadFile("index.html");
+
+  window.on("closed", function () {
+    window = null;
   });
 }
 
@@ -24,5 +35,5 @@ app.on("window-all-closed", function () {
 });
 
 app.on("activate", function () {
-  if (mainWindow === null) createWindow();
+  if (window === null) createWindow();
 });

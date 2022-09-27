@@ -5,9 +5,20 @@
   </head>
   <body>
     <img
+      id="display-image"
       width="250"
       src="http://66.media.tumblr.com/35ce38f7b331accbc5697a0d39201dd1/tumblr_mtaknmIIy21r06rmko1_500.gif"
       style="-webkit-app-region: drag"
     />
+    <!-- src="https://i.imgur.com/al6yjik.gif" -->
   </body>
+  <script>
+    const ipc = require("electron").ipcRenderer;
+    const imgEL = document.getElementById("display-image");
+
+    ipc.send("loaded");
+    ipc.on("setImgSrc", function (event, data) {
+      imgEL.src = data;
+    });
+  </script>
 </html>
